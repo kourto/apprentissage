@@ -17,10 +17,6 @@ public class UserRepositoryImpl {
             DataSource dataSource = DataSourceProvider.getSingleDataSourceInstance();
             conn = dataSource.getConnection();
 
-            //  EXEMPLE EN SQL:
-            //  INSERT INTO "user"(username, password, lastname, firstname, email, registration_date)
-            //  VALUES ('Kaonashi', crypt('qwerty123', gen_salt('bf')), 'Courteau', 'Yves', 'Yves.Courteau@uqtr.ca', '2020-05-18');
-
             preparedStatement = conn.prepareStatement("INSERT INTO \"user\"(username, password, lastname, firstname, email, registration_date)" +
                     "VALUES(?, crypt(?, gen_salt('bf')), ?, ?, ?, now())", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getUsername());
@@ -224,8 +220,6 @@ public class UserRepositoryImpl {
             DataSource dataSource = DataSourceProvider.getSingleDataSourceInstance();
             conn = dataSource.getConnection();
 
-            //  SQL QUERY :
-            //SELECT password = crypt('qwerty123', password) FROM "user" where user_id= 1;
             preparedStatement = conn.prepareStatement("SELECT password = crypt(?, password) as pwdVerif FROM \"user\" WHERE user_id = ?");
             preparedStatement.setString(1, password_input);
             preparedStatement.setInt(2, id);
