@@ -1,9 +1,6 @@
 package com.kaonashi.apprentissage.premier;
 import com.kaonashi.apprentissage.premier.entity.User;
-import com.kaonashi.apprentissage.premier.repository.UserRepositoryImpl;
 import com.kaonashi.apprentissage.premier.service.UserService;
-
-import java.util.List;
 
 public class App {
     public static void main(String[] args) {
